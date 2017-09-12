@@ -5,7 +5,7 @@
   "author": "Buri <buri.buster@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "jest": "jest",
+    "jest": "jest --coverage",
     "jest:watch": "jest --watch",
     "build": "tsc"
   },
@@ -20,6 +20,10 @@
       ".ts": "<rootDir>/node_modules/ts-jest/preprocessor.js"
     },
     "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|js)$",
-    "moduleFileExtensions": ["ts", "tsx", "js"]
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ]
   }
 }

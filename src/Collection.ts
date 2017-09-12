@@ -75,6 +75,12 @@ class Collection<T> {
         return defaultValue;
     }
 
+    /**
+     * Return item on given index
+     * @param {number} index
+     * @param {T} defaultValue
+     * @returns {T}
+     */
     public item(index: number, defaultValue: T = undefined): T | undefined {
         for (let i = this.collection.length - 1; i >= 0; i--) {
             let item = this.collection[i];
@@ -85,6 +91,39 @@ class Collection<T> {
         return defaultValue;
     }
 
+    /**
+     * Select subset of items from start index (including) to end index (including)
+     * @param {number} start
+     * @param {number} end
+     * @returns {Collection<any>}
+     */
+    public range(start: number, end: number) {
+        const length = this.collection.length;
+        const result: T[] = [];
+        let counter = 0;
+        for (let i = 0; i < length; i++) {
+            let item = this.collection[i];
+            if (this.applyFilter(item, i)) {
+                counter++;
+                if (counter >= start && counter <= end) {
+                    result.push(item);
+                }
+            }
+        }
+        return new Collection(result);
+    }
+
+    /**
+     * Apply all filters, then sort the collection given comparing function
+     * Note: javascript sort function is used
+     * @param {(a: T, b: T) => number} compareFn
+     * @returns {Collection<T>}
+     */
+    public sort(compareFn: (a: T, b: T) => number = undefined): Collection<T> {
+        const clone = this.clone();
+        clone.collection.sort(compareFn);
+        return clone;
+    }
 
     /**
      * Return contents of current Collection as array

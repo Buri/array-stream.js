@@ -80,3 +80,19 @@ test('collection can select any item with selector', () => {
         .item(1)
     ).toEqual('pear');
 });
+test('collection can select range', () => {
+    const tested = new Collection(sampleFruits);
+    expect(tested.range(2, 3).toArray()).toEqual(['pear', 'banana']);
+});
+test('collection can select range before beginning', () => {
+    const tested = new Collection(sampleFruits);
+    expect(tested.range(-2, 1).toArray()).toEqual(['apple']);
+});
+test('collection can select range after end', () => {
+    const tested = new Collection(sampleFruits);
+    expect(tested.range(4, 10).toArray()).toEqual(['pineapple', 'kiwi']);
+});
+test('collection can select range before start and after end', () => {
+    const tested = new Collection(sampleFruits);
+    expect(tested.range(-4, 10).toArray()).toEqual(sampleFruits);
+});
