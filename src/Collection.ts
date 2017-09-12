@@ -1,6 +1,9 @@
 /**
  * Created by Jakub Buriánek on 12.09.2017.
- * Optimized collection
+ * This class provides lazy selection on array object, minimizing operations needed
+ * to get selection of items.
+ * Collection is immutable and uses fluent interface to build query-like pattern.
+ * See readme for code samples
  */
 class Collection<T> {
     private collection: T[] = [];
